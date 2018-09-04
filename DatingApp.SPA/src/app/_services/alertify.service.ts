@@ -9,6 +9,7 @@ export class AlertifyService {
             if (e) {
                 okCallback();
             }
+            // tslint:disable-next-line:one-line
             else { }
         });
     }
