@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { UserService } from './_services/user.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { FormsModule } from '@angular/forms';
@@ -36,7 +37,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
       HttpModule,
       FormsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      AuthModule
    ],
   providers: [
     AuthService,
