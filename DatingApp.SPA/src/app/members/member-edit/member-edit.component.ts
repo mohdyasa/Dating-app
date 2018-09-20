@@ -1,7 +1,7 @@
-import { AlertifyService } from './../../_services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { User } from './../../_models/User';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { User } from '../../_models/user';
+import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from '../../_services/alertify.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../_services/user.service';
 import { AuthService } from '../../_services/auth.service';
@@ -12,13 +12,14 @@ import { AuthService } from '../../_services/auth.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-
   user: User;
   @ViewChild('editForm') editForm: NgForm;
   photoUrl: string;
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
-    private userService: UserService, private authService: AuthService
-  ) { }
+
+  constructor(private route: ActivatedRoute,
+    private authService: AuthService,
+    private alertify: AlertifyService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -26,6 +27,7 @@ export class MemberEditComponent implements OnInit {
     });
     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
+
   updateUser() {
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe(next => {
       this.alertify.success('Profile updated successfully');
@@ -34,7 +36,9 @@ export class MemberEditComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-  updateMainPhoto(pholoUrl) {
-    this.user.photoUrl = pholoUrl;
+
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
+
 }

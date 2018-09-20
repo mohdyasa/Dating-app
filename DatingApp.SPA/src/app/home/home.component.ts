@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   registerMode = false;
   values: any;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   ngOnInit() {
   }
@@ -22,4 +22,5 @@ export class HomeComponent implements OnInit {
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }
+
 }
